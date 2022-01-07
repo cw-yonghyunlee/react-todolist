@@ -24,6 +24,7 @@ function ToDoListCard(): JSX.Element {
 				title="할 일"
 				list={toDoList.list
 					.filter(item => !item.isCompleted)
+					.filter(item => item.expiredAt.getTime() > toDoList.date.getTime())
 					.map(item => ({
 						id: item.id,
 						data: item.description,
@@ -34,6 +35,16 @@ function ToDoListCard(): JSX.Element {
 				title="완료한 일"
 				list={toDoList.list
 					.filter(item => item.isCompleted)
+					.map(item => ({
+						id: item.id,
+						data: item.description,
+					}))}
+				onItemClick={completeWork}
+			/>
+			<List
+				title="기한 만료된 일"
+				list={toDoList.list
+					.filter(item => item.expiredAt.getTime() < toDoList.date.getTime())
 					.map(item => ({
 						id: item.id,
 						data: item.description,

@@ -11,7 +11,8 @@ function AddToDoForm(): JSX.Element {
 		<form
 			onSubmit={(e): void => {
 				e.preventDefault();
-				const form = new FormData(e.target as HTMLFormElement);
+				const formElement = e.target as HTMLFormElement;
+				const form = new FormData(formElement);
 				toDoList.actions.setList([
 					...toDoList.list,
 					{
@@ -23,6 +24,7 @@ function AddToDoForm(): JSX.Element {
 					},
 				]);
 				setCount(count + 1);
+				formElement.reset();
 			}}
 		>
 			<LabelInput title="내용" name="description" />
