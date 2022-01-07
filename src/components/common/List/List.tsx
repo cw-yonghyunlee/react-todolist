@@ -8,7 +8,6 @@ export interface ListProps {
 	onItemClick: (id: number) => void;
 }
 
-// eslint-disable-next-line react/prop-types
 function List(props: ListProps): JSX.Element {
 	const makeItems = (): JSX.Element[] =>
 		props.list.map(item => (
