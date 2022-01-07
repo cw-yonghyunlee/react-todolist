@@ -1,11 +1,11 @@
 import React from 'react';
-import ListCard from './components/common/ListCard';
 import { ToDoListProvider } from './contexts/ToDoList';
+import ToDoListCard from './components/ToDoListCard';
 
 function App(): JSX.Element {
 	return (
 		<ToDoListProvider>
-			<ListCard />
+			<ToDoListCard />
 		</ToDoListProvider>
 	);
 }
