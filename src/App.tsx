@@ -1,12 +1,12 @@
 import React from 'react';
-import Card from './components/Card';
+import ListCard from './components/ListCard';
 import { ToDoListProvider } from './contexts/ToDoList';
 
 function App(): JSX.Element {
 	return (
 		<ToDoListProvider>
 			<div className="App">
-				<Card />
+				<ListCard />
 			</div>
 		</ToDoListProvider>
 	);
