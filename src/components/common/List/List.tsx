@@ -1,6 +1,7 @@
 import React from 'react';
 
 export interface ListProps {
+	title: string;
 	list: {
 		id: number;
 		data: string;
@@ -21,7 +22,12 @@ function List(props: ListProps): JSX.Element {
 				{item.data}
 			</li>
 		));
-	return <ul>{makeItems()}</ul>;
+	return (
+		<>
+			<h2>{props.title}</h2>
+			<ul>{makeItems()}</ul>
+		</>
+	);
 }
 
 export default List;

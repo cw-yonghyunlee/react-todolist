@@ -35,6 +35,7 @@ function ToDoListCard(): JSX.Element {
 				}}
 			/>
 			<List
+				title="할 일"
 				list={toDoList.list
 					.filter(item => !item.isCompleted)
 					.map(item => ({
@@ -44,6 +45,7 @@ function ToDoListCard(): JSX.Element {
 				onItemClick={completeWork}
 			/>
 			<List
+				title="완료한 일"
 				list={toDoList.list
 					.filter(item => item.isCompleted)
 					.map(item => ({
