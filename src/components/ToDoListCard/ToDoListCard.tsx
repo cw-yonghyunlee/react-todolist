@@ -1,12 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { ToDoListContext } from '../../contexts/ToDoList';
 import List from '../common/List';
 import ListCard from '../common/ListCard';
-import TextButton from '../common/TextButton';
+import AddToDoForm from '../AddToDoForm';
 
 function ToDoListCard(): JSX.Element {
 	const toDoList = useContext(ToDoListContext);
-	const [count, setCount] = useState(0);
 
 	const completeWork = (id: number): void => {
 		const targetItem = toDoList.list.find(item => item.id === id);
@@ -20,20 +19,7 @@ function ToDoListCard(): JSX.Element {
 
 	return (
 		<ListCard title="To Do List" date={new Date()}>
-			<TextButton
-				title="추가"
-				onClick={(): void => {
-					toDoList.actions.setList([
-						...toDoList.list,
-						{
-							id: count,
-							isCompleted: false,
-							description: 'to do',
-						},
-					]);
-					setCount(count + 1);
-				}}
-			/>
+			<AddToDoForm />
 			<List
 				title="할 일"
 				list={toDoList.list
