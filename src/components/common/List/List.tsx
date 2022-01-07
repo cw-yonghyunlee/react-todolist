@@ -11,7 +11,13 @@ export interface ListProps {
 function List(props: ListProps): JSX.Element {
 	const makeItems = (): JSX.Element[] =>
 		props.list.map(item => (
-			<li key={item.id} onClick={(): void => props.onItemClick(item.id)}>
+			<li
+				style={{
+					border: '1px solid black',
+				}}
+				key={item.id}
+				onClick={(): void => props.onItemClick(item.id)}
+			>
 				{item.data}
 			</li>
 		));
