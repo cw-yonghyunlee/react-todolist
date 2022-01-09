@@ -17,6 +17,10 @@ function ToDoListCard(): JSX.Element {
 		toDoList.actions.setList([...toDoList.list]);
 	};
 
+	const deleteWork = (id: number): void => {
+		toDoList.actions.setList(toDoList.list.filter(item => item.id !== id));
+	};
+
 	return (
 		<ListCard title="To Do List" date={new Date()}>
 			<ToDoForm />
@@ -30,6 +34,7 @@ function ToDoListCard(): JSX.Element {
 						data: item.description,
 					}))}
 				onItemCheckChange={completeWork}
+				onItemDelete={deleteWork}
 			/>
 			<List
 				title="완료한 일"

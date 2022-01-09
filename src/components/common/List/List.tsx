@@ -1,4 +1,5 @@
 import React from 'react';
+import TextButton from '../TextButton';
 
 export interface ListProps {
 	title: string;
@@ -8,31 +9,35 @@ export interface ListProps {
 	}[];
 	onItemClick?: (id: number) => void;
 	onItemCheckChange?: (id: number) => void;
+	onItemDelete?: (id: number) => void;
 }
 
 function List(props: ListProps): JSX.Element {
-	const makeItems = (): JSX.Element[] =>
-		props.list.map(item => (
+	const makeItems = (): JSX.Element[] => {
+		return props.list.map(item => (
 			<li
 				style={{
 					border: '1px solid black',
 				}}
 				key={item.id}
-				onClick={(): void =>
-					props.onItemClick ? props.onItemClick(item.id) : undefined
-				}
+				onClick={(): void => props.onItemClick?.(item.id)}
 			>
-				<input
-					type="checkbox"
-					onChange={(): void =>
-						props.onItemCheckChange
-							? props.onItemCheckChange(item.id)
-							: undefined
-					}
-				/>
+				{props.onItemCheckChange && (
+					<input
+						type="checkbox"
+						onChange={(): void => props.onItemCheckChange?.(item.id)}
+					/>
+				)}
 				{item.data}
+				{props.onItemDelete ? (
+					<TextButton
+						title="삭제"
+						onClick={(): void => props.onItemDelete?.(item.id)}
+					/>
+				) : null}
 			</li>
 		));
+	};
 	return (
 		<>
 			<h2>{props.title}</h2>
