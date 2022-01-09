@@ -6,7 +6,8 @@ export interface ListProps {
 		id: number;
 		data: string;
 	}[];
-	onItemClick: (id: number) => void;
+	onItemClick?: (id: number) => void;
+	onItemCheckChange?: (id: number) => void;
 }
 
 function List(props: ListProps): JSX.Element {
@@ -17,8 +18,18 @@ function List(props: ListProps): JSX.Element {
 					border: '1px solid black',
 				}}
 				key={item.id}
-				onClick={(): void => props.onItemClick(item.id)}
+				onClick={(): void =>
+					props.onItemClick ? props.onItemClick(item.id) : undefined
+				}
 			>
+				<input
+					type="checkbox"
+					onChange={(): void =>
+						props.onItemCheckChange
+							? props.onItemCheckChange(item.id)
+							: undefined
+					}
+				/>
 				{item.data}
 			</li>
 		));

@@ -29,7 +29,7 @@ function ToDoListCard(): JSX.Element {
 						id: item.id,
 						data: item.description,
 					}))}
-				onItemClick={completeWork}
+				onItemCheckChange={completeWork}
 			/>
 			<List
 				title="완료한 일"
@@ -39,7 +39,6 @@ function ToDoListCard(): JSX.Element {
 						id: item.id,
 						data: item.description,
 					}))}
-				onItemClick={completeWork}
 			/>
 			<List
 				title="기한 만료된 일"
@@ -49,7 +48,6 @@ function ToDoListCard(): JSX.Element {
 						id: item.id,
 						data: item.description,
 					}))}
-				onItemClick={completeWork}
 			/>
 		</ListCard>
 	);
