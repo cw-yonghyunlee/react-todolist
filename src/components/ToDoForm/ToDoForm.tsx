@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { ToDoListContext } from '../../contexts/ToDoList';
 import TextButton from '../common/TextButton';
-import LabelInput from '../common/DateInput';
+import LabelInput from '../common/LabelInput';
 
-function AddToDoForm(): JSX.Element {
+function ToDoForm(): JSX.Element {
 	const toDoList = useContext(ToDoListContext);
 	const [count, setCount] = useState(0);
 
@@ -36,4 +36,4 @@ function AddToDoForm(): JSX.Element {
 	);
 }
 
-export default AddToDoForm;
+export default ToDoForm;

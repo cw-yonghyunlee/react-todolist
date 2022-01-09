@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ToDoListContext } from '../../contexts/ToDoList';
 import List from '../common/List';
 import ListCard from '../common/ListCard';
-import AddToDoForm from '../AddToDoForm';
+import ToDoForm from '../ToDoForm';
 
 function ToDoListCard(): JSX.Element {
 	const toDoList = useContext(ToDoListContext);
@@ -19,7 +19,7 @@ function ToDoListCard(): JSX.Element {
 
 	return (
 		<ListCard title="To Do List" date={new Date()}>
-			<AddToDoForm />
+			<ToDoForm />
 			<List
 				title="할 일"
 				list={toDoList.list
