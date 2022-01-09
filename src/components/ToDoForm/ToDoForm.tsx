@@ -20,7 +20,9 @@ function AddToDoForm(): JSX.Element {
 						isCompleted: false,
 						description: form.get('description') as string,
 						createdAt: new Date(),
-						expiredAt: new Date(form.get('expiredDate') as string),
+						expiredAt: form.get('expiredDate')
+							? new Date(form.get('expiredDate') as string)
+							: new Date(),
 					},
 				]);
 				setCount(count + 1);
