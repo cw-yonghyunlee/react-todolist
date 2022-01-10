@@ -5,7 +5,7 @@ export interface ListProps {
 	title: string;
 	list: ListItemInterface[];
 	onItemClick?: (id: number) => void;
-	onItemCheckChange?: (id: number) => void;
+	onItemComplete?: (id: number) => void;
 	onItemDelete?: (id: number) => void;
 	onItemEditSubmit?: (id: number, e: FormEvent<HTMLFormElement>) => void;
 }
@@ -15,7 +15,7 @@ function List({
 	list,
 	onItemClick,
 	onItemEditSubmit,
-	onItemCheckChange,
+	onItemComplete,
 	onItemDelete,
 }: ListProps): JSX.Element {
 	const makeItems = (): JSX.Element[] => {
@@ -24,7 +24,7 @@ function List({
 				key={item.id}
 				item={item}
 				onClick={onItemClick}
-				onCheckChange={onItemCheckChange}
+				onComplete={onItemComplete}
 				onDelete={onItemDelete}
 				onEditSubmit={onItemEditSubmit}
 			/>

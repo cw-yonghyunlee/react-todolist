@@ -10,14 +10,14 @@ export interface ListItemInterface {
 interface ListProps {
 	item: ListItemInterface;
 	onClick?: (id: number) => void;
-	onCheckChange?: (id: number) => void;
+	onComplete?: (id: number) => void;
 	onDelete?: (id: number) => void;
 	onEditSubmit?: (id: number, e: FormEvent<HTMLFormElement>) => void;
 }
 
 function ListItem({
 	item,
-	onCheckChange,
+	onComplete,
 	onEditSubmit,
 	onDelete,
 	onClick,
@@ -33,13 +33,14 @@ function ListItem({
 			onClick={(): void => onClick?.(item.id)}
 			onDoubleClick={(): void => setIsEditMode(!isEditMode)}
 		>
-			{onCheckChange && (
-				<input
-					type="checkbox"
-					onChange={(): void => onCheckChange?.(item.id)}
-				/>
-			)}
 			{item.data}
+			{onComplete && (
+				<TextButton title="완료" onClick={(): void => onComplete?.(item.id)} />
+			)}
+			<TextButton
+				title="편집"
+				onClick={(): void => setIsEditMode(!isEditMode)}
+			/>
 			{onDelete && (
 				<TextButton title="삭제" onClick={(): void => onDelete?.(item.id)} />
 			)}

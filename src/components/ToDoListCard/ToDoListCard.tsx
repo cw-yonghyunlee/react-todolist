@@ -70,7 +70,7 @@ function ToDoListCard(): JSX.Element {
 						id: item.id,
 						data: item.description,
 					}))}
-				onItemCheckChange={completeWork}
+				onItemComplete={completeWork}
 				onItemDelete={deleteWork}
 				onItemEditSubmit={editWork}
 			/>
