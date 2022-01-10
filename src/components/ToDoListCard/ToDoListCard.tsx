@@ -6,7 +6,7 @@ import ToDoForm from '../ToDoForm/ToDoForm';
 
 function ToDoListCard(): JSX.Element {
 	const toDoList = useContext(ToDoListContext);
-	const [count, setCount] = useState(0);
+	const [count, setCount] = useState<number>(0);
 
 	const completeWork = (id: number): void => {
 		const targetItem = toDoList.list.find(item => item.id === id);
