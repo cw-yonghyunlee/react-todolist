@@ -3,24 +3,24 @@ import TextButton from '../common/TextButton/TextButton';
 import LabelInput from '../common/LabelInput/LabelInput';
 
 function ToDoForm({
-	submitButtonLabel,
-	onSubmit,
+  submitButtonLabel,
+  onSubmit,
 }: {
-	submitButtonLabel: string;
-	onSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  submitButtonLabel: string;
+  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }): JSX.Element {
-	return (
-		<form onSubmit={onSubmit}>
-			<LabelInput title="내용" name="description" required={true} />
-			<LabelInput
-				title="만료일"
-				name="expiredDate"
-				inputType="date"
-				required={true}
-			/>
-			<TextButton title={submitButtonLabel} type="submit" />
-		</form>
-	);
+  return (
+    <form onSubmit={onSubmit}>
+      <LabelInput title="내용" name="description" required={true} />
+      <LabelInput
+        title="만료일"
+        name="expiredDate"
+        inputType="date"
+        required={true}
+      />
+      <TextButton title={submitButtonLabel} type="submit" />
+    </form>
+  );
 }
 
 export default ToDoForm;

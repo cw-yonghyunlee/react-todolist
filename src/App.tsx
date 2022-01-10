@@ -3,11 +3,11 @@ import { ToDoListProvider } from './contexts/ToDoList';
 import ToDoListCard from './components/ToDoListCard/ToDoListCard';
 
 function App(): JSX.Element {
-	return (
-		<ToDoListProvider>
-			<ToDoListCard />
-		</ToDoListProvider>
-	);
+  return (
+    <ToDoListProvider>
+      <ToDoListCard />
+    </ToDoListProvider>
+  );
 }
 
 export default App;
