@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { FormEvent, useContext, useState } from 'react';
 import { ToDoListContext } from '../../contexts/ToDoList';
 import List from '../common/List';
 import ListCard from '../common/ListCard';
@@ -6,6 +6,7 @@ import ToDoForm from '../ToDoForm';
 
 function ToDoListCard(): JSX.Element {
 	const toDoList = useContext(ToDoListContext);
+	const [count, setCount] = useState(0);
 
 	const completeWork = (id: number): void => {
 		const targetItem = toDoList.list.find(item => item.id === id);
@@ -21,9 +22,45 @@ function ToDoListCard(): JSX.Element {
 		toDoList.actions.setList(toDoList.list.filter(item => item.id !== id));
 	};
 
+	const addWork = (e: FormEvent<HTMLFormElement>): void => {
+		e.preventDefault();
+		const formElement = e.target as HTMLFormElement;
+		const form = new FormData(formElement);
+		toDoList.actions.setList([
+			...toDoList.list,
+			{
+				id: count,
+				isCompleted: false,
+				description: form.get('description') as string,
+				createdAt: new Date(),
+				expiredAt: form.get('expiredDate')
+					? new Date(form.get('expiredDate') as string)
+					: new Date(),
+			},
+		]);
+		setCount(count + 1);
+		formElement.reset();
+	};
+
+	const editWork = (id: number, e: FormEvent<HTMLFormElement>): void => {
+		e.preventDefault();
+		const targetItem = toDoList.list.find(item => item.id === id);
+		if (targetItem === undefined) {
+			console.error('not found id');
+			return;
+		}
+
+		const formElement = e.target as HTMLFormElement;
+		const form = new FormData(formElement);
+		targetItem.description = form.get('description') as string;
+		targetItem.expiredAt = new Date(form.get('expiredDate') as string);
+		toDoList.actions.setList([...toDoList.list]);
+		formElement.reset();
+	};
+
 	return (
 		<ListCard title="To Do List" date={new Date()}>
-			<ToDoForm />
+			<ToDoForm submitButtonLabel="추가" onSubmit={addWork} />
 			<List
 				title="할 일"
 				list={toDoList.list
@@ -35,6 +72,7 @@ function ToDoListCard(): JSX.Element {
 					}))}
 				onItemCheckChange={completeWork}
 				onItemDelete={deleteWork}
+				onItemEditSubmit={editWork}
 			/>
 			<List
 				title="완료한 일"

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { FormEvent, useState } from 'react';
 import TextButton from '../TextButton';
+import ToDoForm from '../../ToDoForm';
 
 export interface ListProps {
 	title: string;
@@ -10,9 +11,11 @@ export interface ListProps {
 	onItemClick?: (id: number) => void;
 	onItemCheckChange?: (id: number) => void;
 	onItemDelete?: (id: number) => void;
+	onItemEditSubmit?: (id: number, e: FormEvent<HTMLFormElement>) => void;
 }
 
 function List(props: ListProps): JSX.Element {
+	const [isEditMode, setIsEditMode] = useState<boolean>(false);
 	const makeItems = (): JSX.Element[] => {
 		return props.list.map(item => (
 			<li
@@ -21,6 +24,7 @@ function List(props: ListProps): JSX.Element {
 				}}
 				key={item.id}
 				onClick={(): void => props.onItemClick?.(item.id)}
+				onDoubleClick={(): void => setIsEditMode(!isEditMode)}
 			>
 				{props.onItemCheckChange && (
 					<input
@@ -29,12 +33,21 @@ function List(props: ListProps): JSX.Element {
 					/>
 				)}
 				{item.data}
-				{props.onItemDelete ? (
+				{props.onItemDelete && (
 					<TextButton
 						title="삭제"
 						onClick={(): void => props.onItemDelete?.(item.id)}
 					/>
-				) : null}
+				)}
+				{isEditMode && (
+					<ToDoForm
+						submitButtonLabel="편집"
+						onSubmit={(e): void => {
+							props.onItemEditSubmit?.(item.id, e);
+							setIsEditMode(false);
+						}}
+					/>
+				)}
 			</li>
 		));
 	};
