@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react';
-import TextButton from '../TextButton';
-import ToDoForm from '../../ToDoForm';
+import TextButton from '../TextButton/TextButton';
+import ToDoForm from '../../ToDoForm/ToDoForm';
 
 export interface ListProps {
 	title: string;
