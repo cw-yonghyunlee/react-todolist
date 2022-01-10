@@ -1,4 +1,4 @@
-import React, { Context, createContext, useCallback, useState } from 'react';
+import React, { Context, createContext, useState, useEffect } from 'react';
 import { Work } from '../types';
 import { LocalStorageManager } from '../utils/local-storage-manager';
 
@@ -35,21 +35,19 @@ export const ToDoListProvider = ({
 	const [list, setList] = useState<Work[]>([]);
 	const [date, setDate] = useState<Date>(new Date());
 	const [lastId, setLastId] = useState<number>(0);
-	const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
-	if (!isLoaded) {
+	useEffect(() => {
 		const data = LocalStorageManager.get();
 		setList(data?.list ?? []);
 		setLastId(data?.lastId ?? 0);
-		setIsLoaded(true);
-	}
+	}, []);
 
-	useCallback(() => {
+	useEffect(() => {
 		LocalStorageManager.set({
 			list: list,
 			lastId: lastId,
 		});
-	}, [list, lastId])();
+	}, [list, lastId]);
 
 	const value: ToDoList = {
 		list,
