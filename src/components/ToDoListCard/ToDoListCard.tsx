@@ -1,4 +1,4 @@
-import React, { FormEvent, useContext, useState } from 'react';
+import React, { FormEvent, useContext } from 'react';
 import { ToDoListContext } from '../../contexts/ToDoList';
 import List from '../common/List/List';
 import ListCard from '../common/ListCard/ListCard';
@@ -6,7 +6,6 @@ import ToDoForm from '../ToDoForm/ToDoForm';
 
 function ToDoListCard(): JSX.Element {
 	const toDoList = useContext(ToDoListContext);
-	const [count, setCount] = useState<number>(0);
 
 	const completeWork = (id: number): void => {
 		const targetItem = toDoList.list.find(item => item.id === id);
@@ -26,10 +25,10 @@ function ToDoListCard(): JSX.Element {
 		e.preventDefault();
 		const formElement = e.target as HTMLFormElement;
 		const form = new FormData(formElement);
-		toDoList.actions.setList([
+		const newData = [
 			...toDoList.list,
 			{
-				id: count,
+				id: toDoList.lastId + 1,
 				isCompleted: false,
 				description: form.get('description') as string,
 				createdAt: new Date(),
@@ -37,8 +36,9 @@ function ToDoListCard(): JSX.Element {
 					? new Date(form.get('expiredDate') as string)
 					: new Date(),
 			},
-		]);
-		setCount(count + 1);
+		];
+		toDoList.actions.setList(newData);
+		toDoList.actions.setLastId(toDoList.lastId + 1);
 		formElement.reset();
 	};
 
