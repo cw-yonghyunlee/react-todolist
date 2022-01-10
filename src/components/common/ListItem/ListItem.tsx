@@ -4,7 +4,8 @@ import ToDoForm from '../../ToDoForm/ToDoForm';
 
 export interface ListItemInterface {
 	id: number;
-	data: string;
+	title: string;
+	subTitle?: string;
 }
 
 interface ListProps {
@@ -33,7 +34,8 @@ function ListItem({
 			onClick={(): void => onClick?.(item.id)}
 			onDoubleClick={(): void => setIsEditMode(!isEditMode)}
 		>
-			{item.data}
+			{item.title}
+			<span>만료일: {item.subTitle}</span>
 			{onComplete && (
 				<TextButton title="완료" onClick={(): void => onComplete?.(item.id)} />
 			)}

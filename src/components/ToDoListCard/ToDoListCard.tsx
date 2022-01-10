@@ -68,7 +68,8 @@ function ToDoListCard(): JSX.Element {
 					.filter(item => item.expiredAt.getTime() > toDoList.date.getTime())
 					.map(item => ({
 						id: item.id,
-						data: item.description,
+						title: item.description,
+						subTitle: item.expiredAt.toLocaleDateString(),
 					}))}
 				onItemComplete={completeWork}
 				onItemDelete={deleteWork}
@@ -80,7 +81,8 @@ function ToDoListCard(): JSX.Element {
 					.filter(item => item.isCompleted)
 					.map(item => ({
 						id: item.id,
-						data: item.description,
+						title: item.description,
+						subTitle: item.expiredAt.toLocaleDateString(),
 					}))}
 				onItemDelete={deleteWork}
 			/>
@@ -90,7 +92,8 @@ function ToDoListCard(): JSX.Element {
 					.filter(item => item.expiredAt.getTime() < toDoList.date.getTime())
 					.map(item => ({
 						id: item.id,
-						data: item.description,
+						title: item.description,
+						subTitle: item.expiredAt.toLocaleDateString(),
 					}))}
 				onItemDelete={deleteWork}
 			/>
