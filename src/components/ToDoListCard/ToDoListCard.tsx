@@ -82,6 +82,7 @@ function ToDoListCard(): JSX.Element {
 						id: item.id,
 						data: item.description,
 					}))}
+				onItemDelete={deleteWork}
 			/>
 			<List
 				title="기한 만료된 일"
@@ -91,6 +92,7 @@ function ToDoListCard(): JSX.Element {
 						id: item.id,
 						data: item.description,
 					}))}
+				onItemDelete={deleteWork}
 			/>
 		</ListCard>
 	);
