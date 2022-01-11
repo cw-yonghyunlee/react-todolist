@@ -40,11 +40,13 @@ function ListItem({
             onClick={(): void => onComplete?.(item.id)}
           />
         )}
-        <TextButton
-          title="편집"
-          className="edit"
-          onClick={(): void => setIsEditMode(!isEditMode)}
-        />
+        {onEditSubmit && (
+          <TextButton
+            title="편집"
+            className="edit"
+            onClick={(): void => setIsEditMode(!isEditMode)}
+          />
+        )}
         {onDelete && (
           <TextButton
             title="삭제"
