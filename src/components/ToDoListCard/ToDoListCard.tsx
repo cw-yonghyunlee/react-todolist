@@ -2,7 +2,7 @@ import React, { FormEvent, useContext } from 'react';
 import { ToDoListContext } from '../../contexts/ToDoList';
 import List from '../common/List/List';
 import ListCard from '../common/ListCard/ListCard';
-import ToDoForm from '../ToDoForm/ToDoForm';
+import AddToDoForm from '../AddToDoForm/AddToDoForm';
 
 function ToDoListCard(): JSX.Element {
   const toDoList = useContext(ToDoListContext);
@@ -60,7 +60,6 @@ function ToDoListCard(): JSX.Element {
 
   return (
     <ListCard date={new Date()}>
-      <ToDoForm submitButtonLabel="추가" onSubmit={addWork} />
       <List
         title="할 일"
         list={toDoList.list
@@ -97,6 +96,7 @@ function ToDoListCard(): JSX.Element {
           }))}
         onItemDelete={deleteWork}
       />
+      <AddToDoForm submitButtonLabel="추가" onSubmit={addWork} />
     </ListCard>
   );
 }

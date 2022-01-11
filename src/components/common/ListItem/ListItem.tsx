@@ -27,25 +27,32 @@ function ListItem({
 
   return (
     <li
-      style={{
-        border: '1px solid black',
-      }}
       key={item.id}
       onClick={(): void => onClick?.(item.id)}
       onDoubleClick={(): void => setIsEditMode(!isEditMode)}
     >
-      {item.title}
-      <span>만료일: {item.subTitle}</span>
-      {onComplete && (
-        <TextButton title="완료" onClick={(): void => onComplete?.(item.id)} />
-      )}
-      <TextButton
-        title="편집"
-        onClick={(): void => setIsEditMode(!isEditMode)}
-      />
-      {onDelete && (
-        <TextButton title="삭제" onClick={(): void => onDelete?.(item.id)} />
-      )}
+      <div>
+        {item.title}
+        <span>만료일: {item.subTitle}</span>
+        {onComplete && (
+          <TextButton
+            title="완료"
+            onClick={(): void => onComplete?.(item.id)}
+          />
+        )}
+        <TextButton
+          title="편집"
+          className="edit"
+          onClick={(): void => setIsEditMode(!isEditMode)}
+        />
+        {onDelete && (
+          <TextButton
+            title="삭제"
+            className="delete"
+            onClick={(): void => onDelete?.(item.id)}
+          />
+        )}
+      </div>
       {isEditMode && (
         <ToDoForm
           submitButtonLabel="편집"
