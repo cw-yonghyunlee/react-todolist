@@ -84,6 +84,7 @@ article.add-container > form {
   padding: 20px;
   position: relative;
   width: 400px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
 }
 
 article.add-container > form:after {
