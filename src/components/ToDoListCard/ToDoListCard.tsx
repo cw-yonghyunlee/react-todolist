@@ -59,7 +59,7 @@ function ToDoListCard(): JSX.Element {
   };
 
   return (
-    <ListCard title="To Do List" date={new Date()}>
+    <ListCard date={new Date()}>
       <ToDoForm submitButtonLabel="추가" onSubmit={addWork} />
       <List
         title="할 일"

@@ -11,7 +11,7 @@ function ToDoForm({
 }): JSX.Element {
   return (
     <form onSubmit={onSubmit}>
-      <LabelInput title="내용" name="description" required={true} />
+      <LabelInput title="할 일" name="description" required={true} />
       <LabelInput
         title="만료일"
         name="expiredDate"
