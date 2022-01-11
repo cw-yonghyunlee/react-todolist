@@ -2,7 +2,7 @@ import React, { FormEvent } from 'react';
 import ListItem, { ListItemInterface } from '../ListItem/ListItem';
 
 export interface ListProps {
-  title: string;
+  title?: string;
   list: ListItemInterface[];
   onItemClick?: (id: number) => void;
   onItemComplete?: (id: number) => void;
@@ -24,7 +24,7 @@ function List({
         key={item.id}
         item={item}
         onClick={onItemClick}
-        onComplete={onItemComplete}
+        onChangeStatus={onItemComplete}
         onDelete={onItemDelete}
         onEditSubmit={onItemEditSubmit}
       />
@@ -32,7 +32,7 @@ function List({
   };
   return (
     <>
-      <h2>{title}</h2>
+      {title && <h2>{title}</h2>}
       <ul>{makeItems()}</ul>
     </>
   );

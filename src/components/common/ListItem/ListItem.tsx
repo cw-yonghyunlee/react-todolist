@@ -1,24 +1,26 @@
 import React, { FormEvent, useState } from 'react';
 import TextButton from '../TextButton/TextButton';
 import ToDoForm from '../../ToDoForm/ToDoForm';
+import CheckInput from '../CheckInput/CheckInput';
 
 export interface ListItemInterface {
   id: number;
   title: string;
+  isChecked: boolean;
   subTitle?: string;
 }
 
 interface ListProps {
   item: ListItemInterface;
   onClick?: (id: number) => void;
-  onComplete?: (id: number) => void;
+  onChangeStatus?: (id: number) => void;
   onDelete?: (id: number) => void;
   onEditSubmit?: (id: number, e: FormEvent<HTMLFormElement>) => void;
 }
 
 function ListItem({
   item,
-  onComplete,
+  onChangeStatus,
   onEditSubmit,
   onDelete,
   onClick,
@@ -29,17 +31,19 @@ function ListItem({
     <li
       key={item.id}
       onClick={(): void => onClick?.(item.id)}
-      onDoubleClick={(): void => setIsEditMode(!isEditMode)}
+      className={item.isChecked ? 'strikeout' : ''}
     >
       <div>
+        <CheckInput
+          className="check"
+          initialValue={item.isChecked}
+          onChange={(isChecked): void => {
+            console.log(isChecked);
+            onChangeStatus?.(item.id);
+          }}
+        />
         {item.title}
         <span>만료일: {item.subTitle}</span>
-        {onComplete && (
-          <TextButton
-            title="완료"
-            onClick={(): void => onComplete?.(item.id)}
-          />
-        )}
         {onEditSubmit && (
           <TextButton
             title="편집"
