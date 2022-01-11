@@ -7,13 +7,14 @@ import AddToDoForm from '../AddToDoForm/AddToDoForm';
 function ToDoListCard(): JSX.Element {
   const toDoList = useContext(ToDoListContext);
 
-  const completeWork = (id: number): void => {
+  const changeWorkStatus = (id: number): void => {
+    console.log('gd');
     const targetItem = toDoList.list.find(item => item.id === id);
     if (targetItem === undefined) {
       console.error('not found id');
       return;
     }
-    targetItem.isCompleted = true;
+    targetItem.isCompleted = !targetItem.isCompleted;
     toDoList.actions.setList([...toDoList.list]);
   };
 
@@ -61,29 +62,17 @@ function ToDoListCard(): JSX.Element {
   return (
     <ListCard date={new Date()}>
       <List
-        title="할 일"
         list={toDoList.list
-          .filter(item => !item.isCompleted)
           .filter(item => item.expiredAt.getTime() > toDoList.date.getTime())
           .map(item => ({
             id: item.id,
             title: item.description,
+            isChecked: item.isCompleted,
             subTitle: item.expiredAt.toLocaleDateString(),
           }))}
-        onItemComplete={completeWork}
+        onItemComplete={changeWorkStatus}
         onItemDelete={deleteWork}
         onItemEditSubmit={editWork}
-      />
-      <List
-        title="완료한 일"
-        list={toDoList.list
-          .filter(item => item.isCompleted)
-          .map(item => ({
-            id: item.id,
-            title: item.description,
-            subTitle: item.expiredAt.toLocaleDateString(),
-          }))}
-        onItemDelete={deleteWork}
       />
       <List
         title="기한 만료된 일"
@@ -92,6 +81,7 @@ function ToDoListCard(): JSX.Element {
           .map(item => ({
             id: item.id,
             title: item.description,
+            isChecked: item.isCompleted,
             subTitle: item.expiredAt.toLocaleDateString(),
           }))}
         onItemDelete={deleteWork}

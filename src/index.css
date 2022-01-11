@@ -30,7 +30,7 @@ article.list-card {
   height: 700px;
   border: none;
   border-radius: 10px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
   padding: 40px;
   background-color: white;
   position: relative;
@@ -141,6 +141,7 @@ ul > li {
   display: flex;
   flex-direction: column;
   color: #495057;
+  position: relative;
 }
 
 ul > li > div {
@@ -149,6 +150,7 @@ ul > li > div {
   padding: 20px 0;
   list-style: none;
   font-size: 20px;
+  align-content: center;
 }
 
 ul > li > div >span {
@@ -186,4 +188,33 @@ ul > li > div > button.delete:hover {
 
 ul > li > form {
   margin-bottom: 20px;
+}
+
+ul > li.strikeout:after {
+  content: "";
+  border-bottom: 1px solid black;
+  width: 312px;
+  position: absolute;
+  left: 32px;
+  top: 32px;
+  pointer-events: none;
+}
+
+button.checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #DADADA;
+  border-radius: 100%;
+  cursor: pointer;
+  margin-right: 10px;
+  background: none;
+  position: relative;
+}
+
+button.checkbox.active:after {
+  content:'✔';
+  font-size: 14px;
+  position: absolute;
+  left: 3px;
+  top: 1px;
 }
