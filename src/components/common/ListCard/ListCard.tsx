@@ -5,11 +5,11 @@ interface ListCardProps {
   children: React.ReactNode;
 }
 
-function ListCard(props: ListCardProps): JSX.Element {
+function ListCard({ date, children }: ListCardProps): JSX.Element {
   return (
     <article className="list-card">
-      <h3>{props.date.toLocaleDateString()}</h3>
-      {props.children}
+      <h3>{date.toLocaleDateString()}</h3>
+      {children}
     </article>
   );
 }
