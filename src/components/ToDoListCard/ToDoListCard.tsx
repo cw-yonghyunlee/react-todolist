@@ -8,7 +8,6 @@ function ToDoListCard(): JSX.Element {
   const toDoList = useContext(ToDoListContainerContext);
 
   const changeWorkStatus = (id: number): void => {
-    console.log('gd');
     const targetItem = toDoList.list.find(item => item.id === id);
     if (targetItem === undefined) {
       console.error('not found id');

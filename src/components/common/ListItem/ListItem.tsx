@@ -37,8 +37,7 @@ function ListItem({
         <CheckInput
           className="check"
           initialValue={item.isChecked}
-          onChange={(isChecked): void => {
-            console.log(isChecked);
+          onChange={(): void => {
             onChangeStatus?.(item.id);
           }}
         />
