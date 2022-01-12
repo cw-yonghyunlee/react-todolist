@@ -77,6 +77,7 @@ function ToDoListCard(): JSX.Element {
       />
       <List
         title="기한 만료된 일"
+        itemClassName="expired"
         list={toDoList.list
           .filter(
             item => item.expiredAt.getTime() < toDoList.currentDate.getTime(),

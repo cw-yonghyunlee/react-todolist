@@ -198,7 +198,11 @@ ul > li.strikeout:after {
   position: absolute;
   left: 32px;
   top: 32px;
-  pointer-events: none;
+}
+
+ul > li.expired:after {
+  width: 90%;
+  left: 0;
 }
 
 button.checkbox {

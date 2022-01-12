@@ -4,6 +4,7 @@ import ListItem, { ListItemInterface } from '../ListItem/ListItem';
 export interface ListProps {
   title?: string;
   list: ListItemInterface[];
+  itemClassName?: string;
   onItemClick?: (id: number) => void;
   onItemComplete?: (id: number) => void;
   onItemDelete?: (id: number) => void;
@@ -13,6 +14,7 @@ export interface ListProps {
 function List({
   title,
   list,
+  itemClassName,
   onItemClick,
   onItemEditSubmit,
   onItemComplete,
@@ -23,6 +25,7 @@ function List({
       <ListItem
         key={item.id}
         item={item}
+        className={itemClassName}
         onClick={onItemClick}
         onChangeStatus={onItemComplete}
         onDelete={onItemDelete}

@@ -28,7 +28,7 @@ export const ToDoListContainerContext: Context<ToDoListContainer> =
     },
   });
 
-export const ToDoListProvider = ({
+export const ToDoListContainerProvider = ({
   children,
 }: {
   children: React.ReactNode;

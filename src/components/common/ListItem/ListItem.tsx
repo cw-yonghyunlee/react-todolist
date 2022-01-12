@@ -12,6 +12,7 @@ export interface ListItemInterface {
 
 interface ListProps {
   item: ListItemInterface;
+  className?: string;
   onClick?: (id: number) => void;
   onChangeStatus?: (id: number) => void;
   onDelete?: (id: number) => void;
@@ -20,6 +21,7 @@ interface ListProps {
 
 function ListItem({
   item,
+  className,
   onChangeStatus,
   onEditSubmit,
   onDelete,
@@ -31,16 +33,18 @@ function ListItem({
     <li
       key={item.id}
       onClick={(): void => onClick?.(item.id)}
-      className={item.isChecked ? 'strikeout' : ''}
+      className={`${item.isChecked ? 'strikeout' : ''} ${className}`}
     >
       <div>
-        <CheckInput
-          className="check"
-          initialValue={item.isChecked}
-          onChange={(): void => {
-            onChangeStatus?.(item.id);
-          }}
-        />
+        {onChangeStatus && (
+          <CheckInput
+            className="check"
+            initialValue={item.isChecked}
+            onChange={(): void => {
+              onChangeStatus?.(item.id);
+            }}
+          />
+        )}
         {item.title}
         <span>만료일: {item.subTitle}</span>
         {onEditSubmit && (
