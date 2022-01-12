@@ -1,15 +1,15 @@
-import { ToDoList } from '../contexts/ToDoList';
+import { ToDoListContainer } from '../contexts/ToDoListContainer';
 
 const LOCALSTORAGE_KEY = 'works';
 
 export const LocalStorageManager = {
-  set: (data: Partial<ToDoList>): void => {
+  set: (data: Partial<ToDoListContainer>): void => {
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(data));
   },
-  get: (): Partial<ToDoList> => {
+  get: (): Partial<ToDoListContainer> => {
     const data = JSON.parse(
       localStorage.getItem(LOCALSTORAGE_KEY) as string,
-    ) as Partial<ToDoList>;
+    ) as Partial<ToDoListContainer>;
     data?.list?.forEach(item => {
       item.createdAt = new Date(item.createdAt);
       item.expiredAt = new Date(item.expiredAt);

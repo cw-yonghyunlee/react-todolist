@@ -1,11 +1,11 @@
 import React, { FormEvent, useContext } from 'react';
-import { ToDoListContext } from '../../contexts/ToDoList';
+import { ToDoListContainerContext } from '../../contexts/ToDoListContainer';
 import List from '../common/List/List';
 import ListCard from '../common/ListCard/ListCard';
 import AddToDoForm from '../AddToDoForm/AddToDoForm';
 
 function ToDoListCard(): JSX.Element {
-  const toDoList = useContext(ToDoListContext);
+  const toDoList = useContext(ToDoListContainerContext);
 
   const changeWorkStatus = (id: number): void => {
     console.log('gd');
@@ -63,7 +63,9 @@ function ToDoListCard(): JSX.Element {
     <ListCard date={new Date()}>
       <List
         list={toDoList.list
-          .filter(item => item.expiredAt.getTime() > toDoList.date.getTime())
+          .filter(
+            item => item.expiredAt.getTime() > toDoList.currentDate.getTime(),
+          )
           .map(item => ({
             id: item.id,
             title: item.description,
@@ -77,7 +79,9 @@ function ToDoListCard(): JSX.Element {
       <List
         title="기한 만료된 일"
         list={toDoList.list
-          .filter(item => item.expiredAt.getTime() < toDoList.date.getTime())
+          .filter(
+            item => item.expiredAt.getTime() < toDoList.currentDate.getTime(),
+          )
           .map(item => ({
             id: item.id,
             title: item.description,

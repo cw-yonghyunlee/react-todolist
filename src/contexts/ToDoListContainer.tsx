@@ -2,30 +2,31 @@ import React, { Context, createContext, useState, useEffect } from 'react';
 import { Work } from '../types';
 import { LocalStorageManager } from '../utils/local-storage-manager';
 
-export interface ToDoList {
+export interface ToDoListContainer {
   list: Work[];
-  date: Date;
+  currentDate: Date;
   lastId: number;
   actions: {
     setList: React.Dispatch<React.SetStateAction<Work[]>>;
-    setDate: React.Dispatch<React.SetStateAction<Date>>;
+    setCurrentDate: React.Dispatch<React.SetStateAction<Date>>;
     setLastId: React.Dispatch<React.SetStateAction<number>>;
   };
 }
 
-export const ToDoListContext: Context<ToDoList> = createContext<ToDoList>({
-  date: new Date(),
-  list: [],
-  lastId: 0,
-  actions: {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    setList: () => {},
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    setDate: () => {},
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    setLastId: () => {},
-  },
-});
+export const ToDoListContainerContext: Context<ToDoListContainer> =
+  createContext<ToDoListContainer>({
+    currentDate: new Date(),
+    list: [],
+    lastId: 0,
+    actions: {
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      setList: () => {},
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      setCurrentDate: () => {},
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      setLastId: () => {},
+    },
+  });
 
 export const ToDoListProvider = ({
   children,
@@ -49,20 +50,20 @@ export const ToDoListProvider = ({
     });
   }, [list, lastId]);
 
-  const value: ToDoList = {
+  const value: ToDoListContainer = {
     list,
-    date,
+    currentDate: date,
     lastId,
     actions: {
       setList: setList,
-      setDate: setDate,
+      setCurrentDate: setDate,
       setLastId: setLastId,
     },
   };
 
   return (
-    <ToDoListContext.Provider value={value}>
+    <ToDoListContainerContext.Provider value={value}>
       {children}
-    </ToDoListContext.Provider>
+    </ToDoListContainerContext.Provider>
   );
 };
