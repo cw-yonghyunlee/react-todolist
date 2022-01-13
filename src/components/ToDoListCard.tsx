@@ -9,7 +9,7 @@ function ToDoListCard(): JSX.Element {
 
   const changeWorkStatus = (id: number): void => {
     const targetItem = toDoList.list.find(item => item.id === id);
-    if (targetItem === undefined) {
+    if (!targetItem) {
       console.error('not found id');
       return;
     }
@@ -45,7 +45,7 @@ function ToDoListCard(): JSX.Element {
   const editWork = (id: number, e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const targetItem = toDoList.list.find(item => item.id === id);
-    if (targetItem === undefined) {
+    if (!targetItem) {
       console.error('not found id');
       return;
     }
