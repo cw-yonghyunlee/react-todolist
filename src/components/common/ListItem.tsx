@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from 'react';
-import TextButton from '../TextButton/TextButton';
-import ToDoForm from '../../ToDoForm/ToDoForm';
-import CheckInput from '../CheckInput/CheckInput';
+import TextButton from './TextButton';
+import ToDoForm from '../ToDoForm';
+import CheckInput from './CheckInput';
 
 export interface ListItemInterface {
   id: number;

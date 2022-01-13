@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react';
-import TextButton from '../common/TextButton/TextButton';
-import ToDoForm from '../ToDoForm/ToDoForm';
+import TextButton from './common/TextButton';
+import ToDoForm from './ToDoForm';
 
 function AddToDoForm({
   submitButtonLabel,

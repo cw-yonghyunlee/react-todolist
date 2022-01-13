@@ -1,6 +1,6 @@
 import React from 'react';
 import { ToDoListContainerProvider } from './contexts/ToDoListContainer';
-import ToDoListCard from './components/ToDoListCard/ToDoListCard';
+import ToDoListCard from './components/ToDoListCard';
 
 function App(): JSX.Element {
   return (
