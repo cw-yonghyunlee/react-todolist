@@ -1,5 +1,5 @@
 import React, { Context, createContext, useState, useEffect } from 'react';
-import { Work } from '../types';
+import { Work } from '../types/work';
 import { LocalStorageManager } from '../utils/local-storage-manager';
 
 export interface ToDoListContainer {
