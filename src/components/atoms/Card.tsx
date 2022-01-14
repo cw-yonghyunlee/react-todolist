@@ -5,7 +5,7 @@ interface ListCardProps {
   children: React.ReactNode;
 }
 
-function ListCard({ date, children }: ListCardProps): JSX.Element {
+function Card({ date, children }: ListCardProps): JSX.Element {
   return (
     <article className="list-card">
       <h3>{date.toLocaleDateString()}</h3>
@@ -14,4 +14,4 @@ function ListCard({ date, children }: ListCardProps): JSX.Element {
   );
 }
 
-export default ListCard;
+export default Card;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CheckInput({
+function CheckBox({
   className,
   initialValue,
   onChange,
@@ -23,4 +23,4 @@ function CheckInput({
   );
 }
 
-export default CheckInput;
+export default CheckBox;

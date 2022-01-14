@@ -1,6 +1,6 @@
 import React, { FormEvent } from 'react';
-import TextButton from '../atoms/TextButton';
-import LabelInput from '../atoms/LabelInput';
+import Button from '../atoms/Button';
+import Input from '../atoms/Input';
 
 function ToDoForm({
   submitButtonLabel,
@@ -11,14 +11,14 @@ function ToDoForm({
 }): JSX.Element {
   return (
     <form onSubmit={onSubmit}>
-      <LabelInput title="할 일" name="description" required={true} />
-      <LabelInput
+      <Input title="할 일" name="description" required={true} />
+      <Input
         title="만료일"
         name="expiredDate"
         inputType="date"
         required={true}
       />
-      <TextButton
+      <Button
         title={submitButtonLabel}
         className="submit-button"
         type="submit"

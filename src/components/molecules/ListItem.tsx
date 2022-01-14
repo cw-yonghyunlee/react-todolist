@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from 'react';
-import TextButton from '../atoms/TextButton';
+import Button from '../atoms/Button';
 import ToDoForm from './ToDoForm';
-import CheckInput from '../atoms/CheckInput';
+import CheckBox from '../atoms/CheckBox';
 
 export interface ListItemInterface {
   id: number;
@@ -37,7 +37,7 @@ function ListItem({
     >
       <div>
         {onChangeStatus && (
-          <CheckInput
+          <CheckBox
             className="check"
             initialValue={item.isChecked}
             onChange={(): void => {
@@ -48,14 +48,14 @@ function ListItem({
         {item.title}
         <span>만료일: {item.subTitle}</span>
         {onEditSubmit && (
-          <TextButton
+          <Button
             title="편집"
             className="edit"
             onClick={(): void => setIsEditMode(!isEditMode)}
           />
         )}
         {onDelete && (
-          <TextButton
+          <Button
             title="삭제"
             className="delete"
             onClick={(): void => onDelete?.(item.id)}

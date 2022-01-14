@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from 'react';
-import TextButton from '../atoms/TextButton';
+import Button from '../atoms/Button';
 import ToDoForm from '../molecules/ToDoForm';
 
 function AddToDoForm({
@@ -15,7 +15,7 @@ function AddToDoForm({
       {isVisibleForm && (
         <ToDoForm submitButtonLabel={submitButtonLabel} onSubmit={onSubmit} />
       )}
-      <TextButton
+      <Button
         title="+"
         className={`circle-button ${isVisibleForm ? 'active' : ''}`}
         onClick={(): void => setIsVisibleForm(!isVisibleForm)}

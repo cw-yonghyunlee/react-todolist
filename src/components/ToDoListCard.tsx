@@ -1,7 +1,7 @@
 import React, { FormEvent, useContext } from 'react';
 import { ToDoListContainerContext } from '../contexts/ToDoListContainer';
 import List from './organisms/List';
-import ListCard from './atoms/ListCard';
+import Card from './atoms/Card';
 import AddToDoForm from './organisms/AddToDoForm';
 
 function ToDoListCard(): JSX.Element {
@@ -59,7 +59,7 @@ function ToDoListCard(): JSX.Element {
   };
 
   return (
-    <ListCard date={new Date()}>
+    <Card date={new Date()}>
       <List
         list={toDoList.list
           .filter(
@@ -91,7 +91,7 @@ function ToDoListCard(): JSX.Element {
         onItemDelete={deleteWork}
       />
       <AddToDoForm submitButtonLabel="추가" onSubmit={addWork} />
-    </ListCard>
+    </Card>
   );
 }
 

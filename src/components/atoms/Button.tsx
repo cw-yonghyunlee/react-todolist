@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TextButton({
+function Button({
   title,
   className,
   onClick,
@@ -18,4 +18,4 @@ function TextButton({
   );
 }
 
-export default TextButton;
+export default Button;

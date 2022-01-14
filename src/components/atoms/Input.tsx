@@ -7,7 +7,7 @@ interface LabelInputProps {
   required?: boolean;
 }
 
-function LabelInput({
+function Input({
   title,
   name,
   inputType,
@@ -21,4 +21,4 @@ function LabelInput({
   );
 }
 
-export default LabelInput;
+export default Input;
