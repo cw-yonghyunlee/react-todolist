@@ -59,7 +59,8 @@ function ToDoListCard(): JSX.Element {
   };
 
   return (
-    <Card date={new Date()}>
+    <Card>
+      <h3>{new Date().toLocaleDateString()}</h3>
       <List
         list={toDoList.list
           .filter(

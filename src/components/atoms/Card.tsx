@@ -1,17 +1,12 @@
 import React from 'react';
 
-interface ListCardProps {
-  date: Date;
+interface CardInterface {
   children: React.ReactNode;
 }
 
-function Card({ date, children }: ListCardProps): JSX.Element {
-  return (
-    <article className="list-card">
-      <h3>{date.toLocaleDateString()}</h3>
-      {children}
-    </article>
-  );
+function Card(props: CardInterface): JSX.Element {
+  const { children } = props;
+  return <article className="card">{children}</article>;
 }
 
 export default Card;
