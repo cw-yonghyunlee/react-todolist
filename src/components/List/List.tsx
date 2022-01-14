@@ -1,5 +1,5 @@
 import React, { FormEvent } from 'react';
-import ListItem, { ListItemInterface } from '../molecules/ListItem';
+import ListItem, { ListItemInterface } from './ListItem';
 
 export interface ListProps {
   title?: string;

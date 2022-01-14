@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import Button from '../atoms/Button';
-import ToDoForm from '../molecules/ToDoForm';
+import ToDoForm from './ToDoForm';
 
 function AddToDoForm({
   submitButtonLabel,
