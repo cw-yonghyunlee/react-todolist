@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 interface CheckBoxInterface {
-  className: string;
+  className?: string;
   initialValue?: boolean;
   onChange?: (isChecked: boolean) => void;
 }

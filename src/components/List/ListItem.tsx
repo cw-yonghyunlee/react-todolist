@@ -38,7 +38,6 @@ function ListItem({
       <div>
         {onChangeStatus && (
           <CheckBox
-            className="check"
             initialValue={item.isChecked}
             onChange={(): void => {
               onChangeStatus?.(item.id);
