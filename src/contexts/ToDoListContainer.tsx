@@ -55,7 +55,7 @@ export const ToDoListContainerProvider = ({
     currentDate: date,
     lastId,
     actions: {
-      setList: setList,
+      setList,
       setCurrentDate: setDate,
       setLastId: setLastId,
     },

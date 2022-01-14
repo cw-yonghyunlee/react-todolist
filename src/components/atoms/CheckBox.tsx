@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 
-function CheckBox({
-  className,
-  initialValue,
-  onChange,
-}: {
+interface CheckBoxInterface {
   className: string;
   initialValue?: boolean;
   onChange?: (isChecked: boolean) => void;
-}): JSX.Element {
+}
+
+function CheckBox(props: CheckBoxInterface): JSX.Element {
+  const { className, initialValue, onChange } = props;
   const [isChecked, setIsChecked] = useState(initialValue);
+
+  const onClick: React.MouseEventHandler<HTMLButtonElement> = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    onChange?.(isChecked ?? true);
+    setIsChecked(!isChecked);
+  };
+
   return (
     <button
       className={`checkbox ${className} ${isChecked ? 'active' : ''}`}
-      onClick={(e): void => {
-        e.preventDefault();
-        e.stopPropagation();
-        onChange?.(isChecked ?? true);
-        setIsChecked(!isChecked);
-      }}
+      onClick={onClick}
     />
   );
 }
