@@ -1,8 +1,8 @@
 import React, { FormEvent, useContext } from 'react';
 import { ToDoListContainerContext } from '../contexts/ToDoListContainer';
-import List from './common/List';
-import ListCard from './common/ListCard';
-import AddToDoForm from './AddToDoForm';
+import List from './organisms/List';
+import ListCard from './atoms/ListCard';
+import AddToDoForm from './organisms/AddToDoForm';
 
 function ToDoListCard(): JSX.Element {
   const toDoList = useContext(ToDoListContainerContext);
