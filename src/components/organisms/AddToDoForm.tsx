@@ -16,10 +16,11 @@ function AddToDoForm({
         <ToDoForm submitButtonLabel={submitButtonLabel} onSubmit={onSubmit} />
       )}
       <Button
-        title="+"
         className={`circle-button ${isVisibleForm ? 'active' : ''}`}
         onClick={(): void => setIsVisibleForm(!isVisibleForm)}
-      />
+      >
+        {submitButtonLabel}
+      </Button>
     </article>
   );
 }

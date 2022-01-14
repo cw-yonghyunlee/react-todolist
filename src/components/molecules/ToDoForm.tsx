@@ -18,11 +18,9 @@ function ToDoForm({
         inputType="date"
         required={true}
       />
-      <Button
-        title={submitButtonLabel}
-        className="submit-button"
-        type="submit"
-      />
+      <Button className="submit-button" type="submit">
+        {submitButtonLabel}
+      </Button>
     </form>
   );
 }

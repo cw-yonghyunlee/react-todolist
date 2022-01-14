@@ -1,21 +1,15 @@
 import React from 'react';
 
-function Button({
-  title,
-  className,
-  onClick,
-  type,
-}: {
-  title: string;
+interface ButtonProps {
+  children: React.ReactNode;
   className?: string;
   onClick?: () => void;
   type?: 'submit' | 'reset' | 'button';
-}): JSX.Element {
-  return (
-    <button type={type} className={className} onClick={onClick}>
-      {title}
-    </button>
-  );
+}
+
+function Button(props: ButtonProps): JSX.Element {
+  const { children, ...otherProps } = props;
+  return <button {...otherProps}>{children}</button>;
 }
 
 export default Button;

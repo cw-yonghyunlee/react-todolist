@@ -49,17 +49,16 @@ function ListItem({
         <span>만료일: {item.subTitle}</span>
         {onEditSubmit && (
           <Button
-            title="편집"
             className="edit"
             onClick={(): void => setIsEditMode(!isEditMode)}
-          />
+          >
+            편집
+          </Button>
         )}
         {onDelete && (
-          <Button
-            title="삭제"
-            className="delete"
-            onClick={(): void => onDelete?.(item.id)}
-          />
+          <Button className="delete" onClick={(): void => onDelete?.(item.id)}>
+            삭제
+          </Button>
         )}
       </div>
       {isEditMode && (
