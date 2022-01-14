@@ -7,12 +7,9 @@ interface LabelInputProps {
   required?: boolean;
 }
 
-function Input({
-  title,
-  name,
-  inputType,
-  required,
-}: LabelInputProps): JSX.Element {
+function Input(props: LabelInputProps): JSX.Element {
+  const { title, name, inputType, required } = props;
+
   return (
     <>
       <label htmlFor={name}>{title}</label>
