@@ -91,7 +91,7 @@ function ToDoListCard(): JSX.Element {
           }))}
         onItemDelete={deleteWork}
       />
-      <AddToDoForm submitButtonLabel="추가" onSubmit={addWork} />
+      <AddToDoForm submitButtonLabel="+" onSubmit={addWork} />
     </Card>
   );
 }

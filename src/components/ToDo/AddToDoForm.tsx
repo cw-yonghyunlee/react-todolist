@@ -13,7 +13,7 @@ function AddToDoForm({
   return (
     <article className="add-container">
       {isVisibleForm && (
-        <ToDoForm submitButtonLabel={submitButtonLabel} onSubmit={onSubmit} />
+        <ToDoForm submitButtonLabel="추가" onSubmit={onSubmit} />
       )}
       <Button
         className={`circle-button ${isVisibleForm ? 'active' : ''}`}
