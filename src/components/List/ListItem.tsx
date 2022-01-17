@@ -1,7 +1,8 @@
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../atoms/Button';
 import ToDoForm from '../ToDo/ToDoForm';
 import CheckBox from '../atoms/CheckBox';
+import { UseFormFieldValues } from '../../types/form';
 
 export interface ListItemInterface {
   id: number;
@@ -16,7 +17,7 @@ interface ListProps {
   onClick?: (id: number) => void;
   onChangeStatus?: (id: number) => void;
   onDelete?: (id: number) => void;
-  onEditSubmit?: (id: number, e: FormEvent<HTMLFormElement>) => void;
+  onEditSubmit?: (id: number, values: UseFormFieldValues) => void;
 }
 
 function ListItem({

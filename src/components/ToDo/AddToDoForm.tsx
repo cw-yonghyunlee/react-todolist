@@ -1,13 +1,14 @@
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../atoms/Button';
 import ToDoForm from './ToDoForm';
+import { UseFormFieldValues } from '../../types/form';
 
 function AddToDoForm({
   submitButtonLabel,
   onSubmit,
 }: {
   submitButtonLabel: string;
-  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  onSubmit: (values: UseFormFieldValues) => void;
 }): JSX.Element {
   const [isVisibleForm, setIsVisibleForm] = useState(false);
   return (

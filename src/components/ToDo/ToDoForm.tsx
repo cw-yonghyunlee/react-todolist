@@ -1,16 +1,23 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import Button from '../atoms/Button';
 import Input from '../atoms/Input';
+import useForm from '../../hooks/useForm';
+import { UseFormFieldValues } from '../../types/form';
+
+const FieldNames: Readonly<string[]> = ['description', 'expiredDate'];
 
 function ToDoForm({
   submitButtonLabel,
   onSubmit,
 }: {
   submitButtonLabel: string;
-  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  onSubmit: (fields: UseFormFieldValues) => void;
 }): JSX.Element {
+  const {
+    formControl: { handleSubmit, ref },
+  } = useForm({ fieldNames: FieldNames });
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit(f => onSubmit(f))} ref={ref}>
       <Input title="할 일" name="description" required={true} />
       <Input
         title="만료일"

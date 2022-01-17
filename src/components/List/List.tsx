@@ -1,5 +1,6 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import ListItem, { ListItemInterface } from './ListItem';
+import { UseFormFieldValues } from '../../types/form';
 
 export interface ListProps {
   title?: string;
@@ -8,7 +9,7 @@ export interface ListProps {
   onItemClick?: (id: number) => void;
   onItemComplete?: (id: number) => void;
   onItemDelete?: (id: number) => void;
-  onItemEditSubmit?: (id: number, e: FormEvent<HTMLFormElement>) => void;
+  onItemEditSubmit?: (id: number, values: UseFormFieldValues) => void;
 }
 
 function List({

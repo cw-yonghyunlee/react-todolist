@@ -1,8 +1,9 @@
-import React, { FormEvent, useContext } from 'react';
+import React, { useContext } from 'react';
 import { ToDoListContainerContext } from '../../contexts/ToDoListContainer';
 import List from '../List/List';
 import Card from '../atoms/Card';
 import AddToDoForm from './AddToDoForm';
+import { UseFormFieldValues } from '../../types/form';
 
 function ToDoListCard(): JSX.Element {
   const toDoList = useContext(ToDoListContainerContext);
@@ -21,41 +22,31 @@ function ToDoListCard(): JSX.Element {
     toDoList.actions.setList(toDoList.list.filter(item => item.id !== id));
   };
 
-  const addWork = (e: FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    const formElement = e.target as HTMLFormElement;
-    const form = new FormData(formElement);
+  const addWork = (values: UseFormFieldValues): void => {
     const newData = [
       ...toDoList.list,
       {
         id: toDoList.lastId + 1,
         isCompleted: false,
-        description: form.get('description') as string,
+        description: values['description']!,
         createdAt: new Date(),
-        expiredAt: form.get('expiredDate')
-          ? new Date(form.get('expiredDate') as string)
-          : new Date(),
+        expiredAt: new Date(values['expiredDate']!),
       },
     ];
     toDoList.actions.setList(newData);
     toDoList.actions.setLastId(toDoList.lastId + 1);
-    formElement.reset();
   };
 
-  const editWork = (id: number, e: FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
+  const editWork = (id: number, values: UseFormFieldValues): void => {
     const targetItem = toDoList.list.find(item => item.id === id);
     if (!targetItem) {
       console.error('not found id');
       return;
     }
 
-    const formElement = e.target as HTMLFormElement;
-    const form = new FormData(formElement);
-    targetItem.description = form.get('description') as string;
-    targetItem.expiredAt = new Date(form.get('expiredDate') as string);
+    targetItem.description = values['description']!;
+    targetItem.expiredAt = new Date(values['expiredDate']!);
     toDoList.actions.setList([...toDoList.list]);
-    formElement.reset();
   };
 
   return (
