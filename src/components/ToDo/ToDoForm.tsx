@@ -17,7 +17,7 @@ function ToDoForm({
     formControl: { handleSubmit, ref },
   } = useForm({ fieldNames: FieldNames });
   return (
-    <form onSubmit={handleSubmit(f => onSubmit(f))} ref={ref}>
+    <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
       <Input title="할 일" name="description" required={true} />
       <Input
         title="만료일"
