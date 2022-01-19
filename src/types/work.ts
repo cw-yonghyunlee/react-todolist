@@ -5,3 +5,8 @@ export interface Work {
   createdAt: Date;
   expiredAt: Date;
 }
+
+export interface ToDoListData {
+  list: Work[];
+  lastId: number;
+}

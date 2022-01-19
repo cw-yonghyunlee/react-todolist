@@ -1,14 +1,9 @@
-import React, { FormEvent, useState } from 'react';
-import TextButton from '../TextButton/TextButton';
-import ToDoForm from '../../ToDoForm/ToDoForm';
-import CheckInput from '../CheckInput/CheckInput';
-
-export interface ListItemInterface {
-  id: number;
-  title: string;
-  isChecked: boolean;
-  subTitle?: string;
-}
+import { useState } from 'react';
+import Button from '../atoms/Button';
+import ToDoForm from '../to-do/ToDoForm';
+import CheckBox from '../atoms/CheckBox';
+import { UseFormFieldValues } from '../../types/form';
+import { ListItemInterface } from '../../types/list';
 
 interface ListProps {
   item: ListItemInterface;
@@ -16,7 +11,7 @@ interface ListProps {
   onClick?: (id: number) => void;
   onChangeStatus?: (id: number) => void;
   onDelete?: (id: number) => void;
-  onEditSubmit?: (id: number, e: FormEvent<HTMLFormElement>) => void;
+  onEditSubmit?: (id: number, formData: UseFormFieldValues) => void;
 }
 
 function ListItem({
@@ -37,8 +32,7 @@ function ListItem({
     >
       <div>
         {onChangeStatus && (
-          <CheckInput
-            className="check"
+          <CheckBox
             initialValue={item.isChecked}
             onChange={(): void => {
               onChangeStatus?.(item.id);
@@ -48,18 +42,17 @@ function ListItem({
         {item.title}
         <span>만료일: {item.subTitle}</span>
         {onEditSubmit && (
-          <TextButton
-            title="편집"
+          <Button
             className="edit"
             onClick={(): void => setIsEditMode(!isEditMode)}
-          />
+          >
+            편집
+          </Button>
         )}
         {onDelete && (
-          <TextButton
-            title="삭제"
-            className="delete"
-            onClick={(): void => onDelete?.(item.id)}
-          />
+          <Button className="delete" onClick={(): void => onDelete?.(item.id)}>
+            삭제
+          </Button>
         )}
       </div>
       {isEditMode && (
