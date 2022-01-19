@@ -16,3 +16,8 @@ export interface ListProps {
   onItemDelete?: (id: number) => void;
   onItemEditSubmit?: (id: number, formData: UseFormFieldValues) => void;
 }
+
+export enum ListType {
+  ACTIVE_TO_DO,
+  EXPIRED_TO_DO,
+}
