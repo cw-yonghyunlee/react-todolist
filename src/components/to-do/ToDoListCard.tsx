@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import List from '../list/List';
 import Card from '../atoms/Card';
 import AddToDoForm from './AddToDoForm';

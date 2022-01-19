@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from '../atoms/Button';
 import Input from '../atoms/Input';
 import useForm from '../../hooks/useForm';

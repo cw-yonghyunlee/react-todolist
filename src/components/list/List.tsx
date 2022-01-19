@@ -1,4 +1,3 @@
-import React from 'react';
 import ListItem from './ListItem';
 import { UseFormFieldValues } from '../../types/form';
 import { ListItemInterface } from '../../types/list';

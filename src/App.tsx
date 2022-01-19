@@ -1,4 +1,3 @@
-import React from 'react';
 import ToDoListCard from './components/to-do/ToDoListCard';
 
 function App(): JSX.Element {

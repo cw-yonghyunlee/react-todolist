@@ -1,4 +1,3 @@
-import React from 'react';
 import CheckBox from './index';
 import { ComponentStory } from '@storybook/react';
 

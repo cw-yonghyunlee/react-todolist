@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Button from '../atoms/Button';
 import ToDoForm from '../to-do/ToDoForm';
 import CheckBox from '../atoms/CheckBox';
