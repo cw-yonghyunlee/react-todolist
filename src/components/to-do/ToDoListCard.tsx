@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import List from '../List/List';
+import List from '../list/List';
 import Card from '../atoms/Card';
 import AddToDoForm from './AddToDoForm';
 import { UseFormFieldValues } from '../../types/form';
