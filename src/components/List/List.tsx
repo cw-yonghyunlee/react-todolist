@@ -1,6 +1,7 @@
 import React from 'react';
-import ListItem, { ListItemInterface } from './ListItem';
+import ListItem from './ListItem';
 import { UseFormFieldValues } from '../../types/form';
+import { ListItemInterface } from '../../types/list';
 
 export interface ListProps {
   title?: string;

@@ -3,13 +3,7 @@ import Button from '../atoms/Button';
 import ToDoForm from '../ToDo/ToDoForm';
 import CheckBox from '../atoms/CheckBox';
 import { UseFormFieldValues } from '../../types/form';
-
-export interface ListItemInterface {
-  id: number;
-  title: string;
-  isChecked: boolean;
-  subTitle?: string;
-}
+import { ListItemInterface } from '../../types/list';
 
 interface ListProps {
   item: ListItemInterface;
