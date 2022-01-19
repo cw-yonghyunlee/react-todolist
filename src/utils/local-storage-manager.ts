@@ -7,9 +7,16 @@ export function setLocalStorage(data: ToDoListData): void {
 }
 
 export function getLocalStorage(): ToDoListData {
-  const data = JSON.parse(
-    localStorage.getItem(LOCALSTORAGE_KEY) as string,
-  ) as ToDoListData;
+  const localStorageData = localStorage.getItem(LOCALSTORAGE_KEY);
+
+  if (!localStorageData) {
+    return {
+      list: [],
+      lastId: 0,
+    };
+  }
+
+  const data: ToDoListData = JSON.parse(localStorageData);
   data?.list?.forEach(item => {
     item.createdAt = new Date(item.createdAt);
     item.expiredAt = new Date(item.expiredAt);
