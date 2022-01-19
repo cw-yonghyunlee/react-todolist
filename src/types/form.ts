@@ -1,6 +1,6 @@
 import { FormEventHandler, RefObject } from 'react';
 
-type OnSubmit = (fields: UseFormFieldValues) => void;
+type OnSubmit = (formData: UseFormFieldValues) => void;
 export type HandleSubmit = (
   onSubmit: OnSubmit,
 ) => FormEventHandler<HTMLFormElement>;

@@ -36,29 +36,29 @@ function ToDoListCard(): JSX.Element {
     setList(list.filter(item => item.id !== id));
   };
 
-  const addWork = (values: UseFormFieldValues): void => {
+  const addWork = (formData: UseFormFieldValues): void => {
     const newData = [
       ...list,
       {
         id: lastId + 1,
         isCompleted: false,
-        description: values['description']!,
+        description: formData['description']!,
         createdAt: new Date(),
-        expiredAt: new Date(values['expiredDate']!),
+        expiredAt: new Date(formData['expiredDate']!),
       },
     ];
     setList(newData);
     setLastId(lastId + 1);
   };
 
-  const editWork = (id: number, values: UseFormFieldValues): void => {
+  const editWork = (id: number, formData: UseFormFieldValues): void => {
     const targetItem = list.find(item => item.id === id);
     if (!targetItem) {
       console.error('not found id');
       return;
     }
-    targetItem.description = values['description']!;
-    targetItem.expiredAt = new Date(values['expiredDate']!);
+    targetItem.description = formData['description']!;
+    targetItem.expiredAt = new Date(formData['expiredDate']!);
     setList([...list]);
   };
 

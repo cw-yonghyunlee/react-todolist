@@ -8,7 +8,7 @@ function AddToDoForm({
   onSubmit,
 }: {
   submitButtonLabel: string;
-  onSubmit: (values: UseFormFieldValues) => void;
+  onSubmit: (formData: UseFormFieldValues) => void;
 }): JSX.Element {
   const [isVisibleForm, setIsVisibleForm] = useState(false);
   return (

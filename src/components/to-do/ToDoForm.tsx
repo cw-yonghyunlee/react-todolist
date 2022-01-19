@@ -11,7 +11,7 @@ function ToDoForm({
   onSubmit,
 }: {
   submitButtonLabel: string;
-  onSubmit: (fields: UseFormFieldValues) => void;
+  onSubmit: (formData: UseFormFieldValues) => void;
 }): JSX.Element {
   const {
     formControl: { handleSubmit, ref },

@@ -14,5 +14,5 @@ export interface ListProps {
   onItemClick?: (id: number) => void;
   onItemComplete?: (id: number) => void;
   onItemDelete?: (id: number) => void;
-  onItemEditSubmit?: (id: number, values: UseFormFieldValues) => void;
+  onItemEditSubmit?: (id: number, formData: UseFormFieldValues) => void;
 }

@@ -11,7 +11,7 @@ interface ListProps {
   onClick?: (id: number) => void;
   onChangeStatus?: (id: number) => void;
   onDelete?: (id: number) => void;
-  onEditSubmit?: (id: number, values: UseFormFieldValues) => void;
+  onEditSubmit?: (id: number, formData: UseFormFieldValues) => void;
 }
 
 function ListItem({
