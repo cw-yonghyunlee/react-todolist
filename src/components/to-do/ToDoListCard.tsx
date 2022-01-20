@@ -8,6 +8,7 @@ import {
   setLocalStorage,
 } from '../../utils/local-storage-manager';
 import { Work } from '../../types/work';
+import { ListItemInterface, ListType } from '../../types/list';
 
 const currentDate = new Date();
 
@@ -21,6 +22,21 @@ function ToDoListCard(): JSX.Element {
       lastId,
     });
   }, [list, lastId]);
+
+  const makeFilteredList = (type: ListType): ListItemInterface[] => {
+    return list
+      .filter(item =>
+        type === ListType.ACTIVATE_TO_DO
+          ? item.expiredAt.getTime() > currentDate.getTime()
+          : item.expiredAt.getTime() <= currentDate.getTime(),
+      )
+      .map(item => ({
+        id: item.id,
+        title: item.description,
+        isChecked: item.isCompleted,
+        subTitle: item.expiredAt.toLocaleDateString(),
+      }));
+  };
 
   const changeWorkStatus = (id: number): void => {
     const targetItem = list.find(item => item.id === id);
@@ -66,29 +82,15 @@ function ToDoListCard(): JSX.Element {
     <Card>
       <h3>{currentDate.toLocaleDateString()}</h3>
       <List
-        list={list
-          .filter(item => item.expiredAt.getTime() > currentDate.getTime())
-          .map(item => ({
-            id: item.id,
-            title: item.description,
-            isChecked: item.isCompleted,
-            subTitle: item.expiredAt.toLocaleDateString(),
-          }))}
+        list={makeFilteredList(ListType.ACTIVATE_TO_DO)}
         onItemComplete={changeWorkStatus}
         onItemDelete={deleteWork}
         onItemEditSubmit={editWork}
       />
       <List
+        list={makeFilteredList(ListType.EXPIRED_TO_DO)}
         title="기한 만료된 일"
         itemClassName="expired"
-        list={list
-          .filter(item => item.expiredAt.getTime() < currentDate.getTime())
-          .map(item => ({
-            id: item.id,
-            title: item.description,
-            isChecked: item.isCompleted,
-            subTitle: item.expiredAt.toLocaleDateString(),
-          }))}
         onItemDelete={deleteWork}
       />
       <AddToDoForm submitButtonLabel="+" onSubmit={addWork} />
