@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import ToDoList from './ToDoList';
+import List from '../list/List';
 import Card from '../atoms/Card';
 import AddToDoForm from './AddToDoForm';
 import { UseFormFieldValues } from '../../types/form';
@@ -8,7 +8,6 @@ import {
   setLocalStorage,
 } from '../../utils/local-storage-manager';
 import { Work } from '../../types/work';
-import { ListType } from '../../types/list';
 
 const currentDate = new Date();
 
@@ -22,6 +21,20 @@ function ToDoListCard(): JSX.Element {
       lastId,
     });
   }, [list, lastId]);
+
+  const changeWorkStatus = (id: number): void => {
+    const targetItem = list.find(item => item.id === id);
+    if (!targetItem) {
+      console.error('not found id');
+      return;
+    }
+    targetItem.isCompleted = !targetItem.isCompleted;
+    setList([...list]);
+  };
+
+  const deleteWork = (id: number): void => {
+    setList(list.filter(item => item.id !== id));
+  };
 
   const addWork = (formData: UseFormFieldValues): void => {
     const newData = [
@@ -38,16 +51,45 @@ function ToDoListCard(): JSX.Element {
     setLastId(lastId + 1);
   };
 
+  const editWork = (id: number, formData: UseFormFieldValues): void => {
+    const targetItem = list.find(item => item.id === id);
+    if (!targetItem) {
+      console.error('not found id');
+      return;
+    }
+    targetItem.description = formData['description']!;
+    targetItem.expiredAt = new Date(formData['expiredDate']!);
+    setList([...list]);
+  };
+
   return (
     <Card>
       <h3>{currentDate.toLocaleDateString()}</h3>
-      <ToDoList list={list} setList={setList} type={ListType.ACTIVE_TO_DO} />
-      <ToDoList
-        list={list}
-        setList={setList}
+      <List
+        list={list
+          .filter(item => item.expiredAt.getTime() > currentDate.getTime())
+          .map(item => ({
+            id: item.id,
+            title: item.description,
+            isChecked: item.isCompleted,
+            subTitle: item.expiredAt.toLocaleDateString(),
+          }))}
+        onItemComplete={changeWorkStatus}
+        onItemDelete={deleteWork}
+        onItemEditSubmit={editWork}
+      />
+      <List
         title="기한 만료된 일"
         itemClassName="expired"
-        type={ListType.EXPIRED_TO_DO}
+        list={list
+          .filter(item => item.expiredAt.getTime() < currentDate.getTime())
+          .map(item => ({
+            id: item.id,
+            title: item.description,
+            isChecked: item.isCompleted,
+            subTitle: item.expiredAt.toLocaleDateString(),
+          }))}
+        onItemDelete={deleteWork}
       />
       <AddToDoForm submitButtonLabel="+" onSubmit={addWork} />
     </Card>
