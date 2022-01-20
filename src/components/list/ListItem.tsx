@@ -3,10 +3,11 @@ import Button from '../atoms/Button';
 import ToDoForm from '../to-do/ToDoForm';
 import CheckBox from '../atoms/CheckBox';
 import { UseFormFieldValues } from '../../types/form';
-import { ListItemInterface } from '../../types/list';
+import { ListItemInterface, ListType } from '../../types/list';
 
 interface ListProps {
   item: ListItemInterface;
+  mode: ListType;
   className?: string;
   onClick?: (id: number) => void;
   onChangeStatus?: (id: number) => void;
@@ -14,14 +15,16 @@ interface ListProps {
   onEditSubmit?: (id: number, formData: UseFormFieldValues) => void;
 }
 
-function ListItem({
-  item,
-  className,
-  onChangeStatus,
-  onEditSubmit,
-  onDelete,
-  onClick,
-}: ListProps): JSX.Element {
+function ListItem(props: ListProps): JSX.Element {
+  const {
+    item,
+    mode,
+    className,
+    onChangeStatus,
+    onEditSubmit,
+    onDelete,
+    onClick,
+  } = props;
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
   return (
@@ -31,7 +34,7 @@ function ListItem({
       className={`${item.isChecked ? 'strikeout' : ''} ${className}`}
     >
       <div>
-        {onChangeStatus && (
+        {mode === ListType.ACTIVATE_TO_DO && (
           <CheckBox
             initialValue={item.isChecked}
             onChange={(): void => {
@@ -41,7 +44,7 @@ function ListItem({
         )}
         {item.title}
         <span>만료일: {item.subTitle}</span>
-        {onEditSubmit && (
+        {mode === ListType.ACTIVATE_TO_DO && (
           <Button
             className="edit"
             onClick={(): void => setIsEditMode(!isEditMode)}
@@ -49,11 +52,9 @@ function ListItem({
             편집
           </Button>
         )}
-        {onDelete && (
-          <Button className="delete" onClick={(): void => onDelete?.(item.id)}>
-            삭제
-          </Button>
-        )}
+        <Button className="delete" onClick={(): void => onDelete?.(item.id)}>
+          삭제
+        </Button>
       </div>
       {isEditMode && (
         <ToDoForm

@@ -1,10 +1,11 @@
 import ListItem from './ListItem';
 import { UseFormFieldValues } from '../../types/form';
-import { ListItemInterface } from '../../types/list';
+import { ListItemInterface, ListType } from '../../types/list';
 
 interface ListProps {
   title?: string;
   list: ListItemInterface[];
+  mode: ListType;
   itemClassName?: string;
   onItemClick?: (id: number) => void;
   onItemComplete?: (id: number) => void;
@@ -12,19 +13,22 @@ interface ListProps {
   onItemEditSubmit?: (id: number, formData: UseFormFieldValues) => void;
 }
 
-function List({
-  title,
-  list,
-  itemClassName,
-  onItemClick,
-  onItemEditSubmit,
-  onItemComplete,
-  onItemDelete,
-}: ListProps): JSX.Element {
+function List(props: ListProps): JSX.Element {
+  const {
+    title,
+    list,
+    mode,
+    itemClassName,
+    onItemClick,
+    onItemEditSubmit,
+    onItemComplete,
+    onItemDelete,
+  } = props;
   const makeItems = (): JSX.Element[] => {
     return list.map(item => (
       <ListItem
         key={item.id}
+        mode={mode}
         item={item}
         className={itemClassName}
         onClick={onItemClick}
