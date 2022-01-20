@@ -8,20 +8,27 @@ import { ListItemInterface } from '../../types/list';
 interface ListProps {
   item: ListItemInterface;
   className?: string;
+  enableCheck?: boolean;
+  enableDelete?: boolean;
+  enableSubmit?: boolean;
   onClick?: (id: number) => void;
   onChangeStatus?: (id: number) => void;
   onDelete?: (id: number) => void;
   onEditSubmit?: (id: number, formData: UseFormFieldValues) => void;
 }
 
-function ListItem({
-  item,
-  className,
-  onChangeStatus,
-  onEditSubmit,
-  onDelete,
-  onClick,
-}: ListProps): JSX.Element {
+function ListItem(props: ListProps): JSX.Element {
+  const {
+    item,
+    className,
+    enableCheck,
+    enableDelete,
+    enableSubmit,
+    onChangeStatus,
+    onEditSubmit,
+    onDelete,
+    onClick,
+  } = props;
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
   return (
@@ -31,7 +38,7 @@ function ListItem({
       className={`${item.isChecked ? 'strikeout' : ''} ${className}`}
     >
       <div>
-        {onChangeStatus && (
+        {enableCheck && (
           <CheckBox
             initialValue={item.isChecked}
             onChange={(): void => {
@@ -41,7 +48,7 @@ function ListItem({
         )}
         {item.title}
         <span>만료일: {item.subTitle}</span>
-        {onEditSubmit && (
+        {enableSubmit && (
           <Button
             className="edit"
             onClick={(): void => setIsEditMode(!isEditMode)}
@@ -49,7 +56,7 @@ function ListItem({
             편집
           </Button>
         )}
-        {onDelete && (
+        {enableDelete && (
           <Button className="delete" onClick={(): void => onDelete?.(item.id)}>
             삭제
           </Button>

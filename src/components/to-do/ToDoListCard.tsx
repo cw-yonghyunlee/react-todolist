@@ -83,6 +83,9 @@ function ToDoListCard(): JSX.Element {
       <h3>{currentDate.toLocaleDateString()}</h3>
       <List
         list={makeFilteredList(ListType.ACTIVATE_TO_DO)}
+        enableCheck={true}
+        enableDelete={true}
+        enableSubmit={true}
         onItemComplete={changeWorkStatus}
         onItemDelete={deleteWork}
         onItemEditSubmit={editWork}
@@ -91,6 +94,7 @@ function ToDoListCard(): JSX.Element {
         list={makeFilteredList(ListType.EXPIRED_TO_DO)}
         title="기한 만료된 일"
         itemClassName="expired"
+        enableDelete={true}
         onItemDelete={deleteWork}
       />
       <AddToDoForm submitButtonLabel="+" onSubmit={addWork} />

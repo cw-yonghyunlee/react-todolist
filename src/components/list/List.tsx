@@ -6,21 +6,26 @@ interface ListProps {
   title?: string;
   list: ListItemInterface[];
   itemClassName?: string;
+  enableCheck?: boolean;
+  enableDelete?: boolean;
+  enableSubmit?: boolean;
   onItemClick?: (id: number) => void;
   onItemComplete?: (id: number) => void;
   onItemDelete?: (id: number) => void;
   onItemEditSubmit?: (id: number, formData: UseFormFieldValues) => void;
 }
 
-function List({
-  title,
-  list,
-  itemClassName,
-  onItemClick,
-  onItemEditSubmit,
-  onItemComplete,
-  onItemDelete,
-}: ListProps): JSX.Element {
+function List(props: ListProps): JSX.Element {
+  const {
+    title,
+    list,
+    itemClassName,
+    onItemClick,
+    onItemEditSubmit,
+    onItemComplete,
+    onItemDelete,
+    ...otherProps
+  } = props;
   const makeItems = (): JSX.Element[] => {
     return list.map(item => (
       <ListItem
@@ -31,6 +36,7 @@ function List({
         onChangeStatus={onItemComplete}
         onDelete={onItemDelete}
         onEditSubmit={onItemEditSubmit}
+        {...otherProps}
       />
     ));
   };
