@@ -1,5 +1,4 @@
 import { HTMLInputTypeAttribute } from 'react';
-import useInput from '../../../hooks/useInput';
 
 interface LabelInputProps {
   title: string;
@@ -10,18 +9,12 @@ interface LabelInputProps {
 }
 
 function Input(props: LabelInputProps): JSX.Element {
-  const { title, name, inputType, required, initialValue } = props;
-  const input = useInput(initialValue);
+  const { title, name, inputType, required } = props;
 
   return (
     <>
       <label htmlFor={name}>{title}</label>
-      <input
-        name={name}
-        type={inputType || 'text'}
-        required={required}
-        {...input}
-      />
+      <input name={name} type={inputType || 'text'} required={required} />
     </>
   );
 }
