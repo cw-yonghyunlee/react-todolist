@@ -41,8 +41,10 @@ function ToDoListCard(): JSX.Element {
   return (
     <Card>
       <h3>{currentDate.toLocaleDateString()}</h3>
-      <ToDoList type={ListType.ACTIVE_TO_DO} />
+      <ToDoList list={list} setList={setList} type={ListType.ACTIVE_TO_DO} />
       <ToDoList
+        list={list}
+        setList={setList}
         title="기한 만료된 일"
         itemClassName="expired"
         type={ListType.EXPIRED_TO_DO}

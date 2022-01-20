@@ -1,19 +1,24 @@
 import ListItem from '../list/ListItem';
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { Work } from '../../types/work';
-import { getLocalStorage } from '../../utils/local-storage-manager';
 import { UseFormFieldValues } from '../../types/form';
 import { ListType } from '../../types/list';
 
 interface ListProps {
+  list: Work[];
+  setList: Dispatch<SetStateAction<Work[]>>;
   type: ListType;
   title?: string;
   itemClassName?: string;
 }
 
-function ToDoList({ type, title, itemClassName }: ListProps): JSX.Element {
-  const [list, setList] = useState<Work[]>(getLocalStorage().list);
-
+function ToDoList({
+  list,
+  setList,
+  type,
+  title,
+  itemClassName,
+}: ListProps): JSX.Element {
   const changeWorkStatus = (id: number): void => {
     const targetItem = list.find(item => item.id === id);
     if (!targetItem) {
